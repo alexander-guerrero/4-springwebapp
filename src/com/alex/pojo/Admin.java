@@ -2,11 +2,26 @@ package com.alex.pojo;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+//@Table(name = "Admin")
 public class Admin {
 
+	@Id
+	@GeneratedValue()
+//	@Column(name = "id_admin")
 	private int idAdm;
+	
+//	@Column(name = "nombre_completo")
 	private String nombre;
+	
 	private String cargo;
+	
 	private Timestamp fechaCreacion;
 
 	public Admin() {
