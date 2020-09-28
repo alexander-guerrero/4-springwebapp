@@ -12,14 +12,14 @@ import com.alex.pojo.Admin;
 
 @Service
 public class AdminService {
-	
+
 	@Autowired
 	private AdminDao adminDao;
-	
-	public boolean save(Admin admin) {
+
+	public void save(Admin admin) {
 		// Setear fecha de creación
 		admin.setFechaCreacion(new Timestamp(new Date().getTime()));
-		return adminDao.save(admin);
+		adminDao.save(admin);
 	}
 
 	public List<Admin> findAll() {
@@ -30,20 +30,20 @@ public class AdminService {
 		return adminDao.findById(id);
 	}
 
-	public boolean saveOrUpdate(Admin admin) {
+	public void saveOrUpdate(Admin admin) {
 		if (admin.getIdAdm() == 0) {
 			// Setear fecha de creación
 			admin.setFechaCreacion(new Timestamp(new Date().getTime()));
 			// Crea el registro (INSERT)
-			return adminDao.save(admin);
+			adminDao.save(admin);
 		} else {
 			// Modifica el registro (UPDATE)
-			return adminDao.update(admin);
+			adminDao.update(admin);
 		}
 	}
 
-	public boolean delete(int id) {
-		return adminDao.delete(id);
+	public void delete(int id) {
+		adminDao.delete(id);
 	}
 
 }
