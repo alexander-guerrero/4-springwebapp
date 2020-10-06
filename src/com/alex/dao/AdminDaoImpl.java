@@ -2,9 +2,11 @@ package com.alex.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,20 +31,39 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public List<Admin> findAll() {
+		// Consulta con HQL
 		Query query = getSession().createQuery("from Admin"); // SQL: SELECT * FROM Admin
 		return query.list();
+		
+		// Consulta con Criteria
+//		Criteria criteria = getSession().createCriteria(Admin.class);
+//		return criteria.list();
 	}
 
 	@Override
 	public Admin findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		// Consulta con Criteria
+		Criteria criteria = getSession().createCriteria(Admin.class);
+		criteria.add(Restrictions.eq("idAdm", id));
+		return (Admin) criteria.uniqueResult();
+		
+		// Consulta con HQL
+//		Query query = getSession().createQuery("from Admin where idAdm = :idAdmin");
+//		query.setParameter("idAdmin", id);
+//		return (Admin) query.uniqueResult();
 	}
 
 	@Override
 	public List<Admin> findByNombre(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
+		// Consulta con Criteria
+		Criteria criteria = getSession().createCriteria(Admin.class);
+		criteria.add(Restrictions.like("nombre", "%" + nombre + "%"));
+		return criteria.list();
+		
+		// Consulta con HQL
+//		Query query = getSession().createQuery("from Admin where nombre like :nombre");
+//		query.setParameter("nombre", "%" + nombre + "%");
+//		return query.list();
 	}
 
 	@Override
