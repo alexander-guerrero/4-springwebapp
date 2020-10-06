@@ -43,7 +43,8 @@ public class AdminService {
 	}
 
 	public void delete(int id) {
-		adminDao.delete(id);
+		Admin admin = adminDao.findById(id);
+		adminDao.delete(admin);
 	}
 
 }
