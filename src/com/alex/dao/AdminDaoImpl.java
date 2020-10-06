@@ -2,6 +2,7 @@ package com.alex.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public List<Admin> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = getSession().createQuery("from Admin"); // SQL: SELECT * FROM Admin
+		return query.list();
 	}
 
 	@Override
