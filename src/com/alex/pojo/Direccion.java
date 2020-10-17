@@ -1,40 +1,56 @@
 package com.alex.pojo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Component
+@Entity
+//@Table(name = "Direccion")
 public class Direccion {
 	
+	@Id
+	@GeneratedValue
+//	@Column(name = "id_direccion")
+	private int idDir;
+	
+//	@Column(name = "nombre_calle")
 	private String calle;
+	
 	private String cp;
 	
 	public Direccion() {
 		
 	}
 
-	// Pasar valores por parámetros del método Constructor
-	// @Autowired
-	public Direccion(/*@Value("Calle Constructor")*/ String calle, /*@Value("1111")*/ String cp) {
-		this.calle = calle;
-		this.cp = cp;
+	public int getIdDir() {
+		return idDir;
 	}
-	
-	//Pasar valores por parámetros de los métodos Setters
-	@Autowired
-	public void setCalle(@Value("Calle Setter") String calle) {
+
+	public void setIdDir(int idDir) {
+		this.idDir = idDir;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
 		this.calle = calle;
 	}
 
-	@Autowired
-	public void setCp(@Value("2222") String cp) {
+	public String getCp() {
+		return cp;
+	}
+
+	public void setCp(String cp) {
 		this.cp = cp;
 	}
 
 	@Override
 	public String toString() {
-		return "Direccion [calle=" + calle + ", cp=" + cp + "]";
+		return "Direccion [idDir=" + idDir + ", calle=" + calle + ", cp=" + cp + "]";
 	}
 
 }
