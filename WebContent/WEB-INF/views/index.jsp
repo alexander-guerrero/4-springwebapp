@@ -32,6 +32,7 @@
 			<th>Nombre</th>
 			<th>Cargo</th>
 			<th>Fecha de Creación</th>
+			<th>Direcciones</th>
 			<th colspan="2">Acción</th>
 		</tr>
 		<!-- Iteración mediante JSTL y EL (Expression Language) -->
@@ -41,6 +42,7 @@
 				<td><c:out value="${admin.nombre}"></c:out></td>
 				<td><c:out value="${admin.cargo}"></c:out></td>
 				<td><c:out value="${admin.fechaCreacion}"></c:out></td>
+				<td><a href='<c:url value="/direccion/${admin.idAdm}" />'>Ver</a></td>
 				<td><a href='<c:url value="admin/${admin.idAdm}/update" />'>Modificar</a></td>
 				<td><a class="confirmacion" href='<c:url value="admin/${admin.idAdm}/delete" />'>Eliminar</a></td>
 			</tr>
